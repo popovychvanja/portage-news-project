@@ -1,0 +1,15 @@
+# Python files
+__pycache__/
+*.pyc
+
+# Virtual Environment
+venv/
+*.env
+
+# Django-specific files
+db.sqlite3
+/media/ # Exclude user-uploaded files (you'll use cloud storage later)
+
+# IDE files
+.vscode/
+.idea/

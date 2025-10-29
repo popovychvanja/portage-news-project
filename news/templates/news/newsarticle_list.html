@@ -1,0 +1,35 @@
+{% extends "news/base.html" %}
+{% load static %}
+
+{% block content %}
+<header class="hero">
+    <h1>Portage la Prairie News</h1>
+    <p>Local updates for our community.</p>
+</header>
+
+<section class="news-grid">
+    {% for article in articles %}
+    <article class="news-card">
+        {% if article.image %}
+        <img src="{{ article.image.url }}" alt="{{ article.title }}">
+        {% else %}
+        <div class="card-image-placeholder">No Image Available</div>
+        {% endif %}
+        
+        <div class="card-content">
+            <h2>
+                <a href="{% url 'news:detail' article_slug=article.slug %}" class="story-link">{{ article.title }}</a>
+            </h2>
+            <p>{{ article.excerpt }}</p>
+            <div class="card-meta">
+                <span class="pub-date">{{ article.pub_date|date:"M d, Y" }}</span>
+                <span class="author">By {{ article.author }}</span>
+            </div>
+            <a href="{% url 'news:detail' article_slug=article.slug %}" class="read-more">Read Full Story →</a>
+        </div>
+    </article>
+    {% empty %}
+    <p class="no-news">📰 No published news articles for Portage la Prairie yet. Please check the admin portal to add content!</p>
+    {% endfor %}
+</section>
+{% endblock content %}

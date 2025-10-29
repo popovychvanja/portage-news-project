@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portage la Prairie News</title>
+    <link rel="stylesheet" href="{% static 'news/style.css' %}">
+</head>
+<body>
+    <nav class="main-nav">
+    <a href="{% url 'news:home' %}" class="logo">P.L.P. News</a>
+    <div class="nav-links">
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">
+                    Logout ({{ user.username }})
+                </button>
+            </form>
+            <a href="{% url 'admin:index' %}">Admin Portal</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="login-btn">Subscriber Login</a>
+        {% endif %}
+    </div>
+</nav>
+    <main class="container">
+    {% comment %} Display all Django messages here {% endcomment %}
+    {% if messages %}
+        <ul class="messages-list">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message }}
+                    <span class="close-message" onclick="this.parentElement.style.display='none';">×</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    {% block content %}
+    {% endblock content %}
+</main>
+    <footer>
+        &copy; 2025 Portage la Prairie News. All rights reserved.
+    </footer>
+</body>
+</html>

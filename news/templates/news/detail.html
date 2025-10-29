@@ -1,0 +1,42 @@
+{% extends "news/base.html" %}
+{% load static %}
+
+{% block content %}
+<article class="full-article">
+    <header>
+        <a href="{% url 'news:home' %}" class="back-link">← Back to News Grid</a>
+        <h1>{{ article.title }}</h1>
+        <div class="meta">
+            <span>By **{{ article.author }}**</span>
+            <span>- Published on {{ article.pub_date|date:"F d, Y" }}</span>
+        </div>
+        {% if article.image %}
+        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="article-image">
+        {% endif %}
+    </header>
+    
+    <div class="article-body">
+        {{ article.content|safe|linebreaks }}
+    </div>
+
+    <section class="share-options">
+        <h3>Share This Story:</h3>
+        {% with url_absolute=request.build_absolute_uri %}
+        
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url_absolute }}" target="_blank" class="share-btn facebook-btn">Facebook</a>
+        
+        <a href="https://twitter.com/intent/tweet?url={{ url_absolute }}&text={{ article.title|urlencode }}" target="_blank" class="share-btn x-btn">X (Twitter)</a>
+        
+        <button onclick="navigator.clipboard.writeText('{{ url_absolute }}'); alert('Link copied to clipboard!');" class="share-btn instagram-btn">Copy Link</button>
+        
+        {% endwith %}
+    </section>
+</article>
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+// Optional: Add a simple script to handle the copy function if necessary
+// The inline onclick function is usually sufficient, but a dedicated script is cleaner.
+</script>
+{% endblock %}

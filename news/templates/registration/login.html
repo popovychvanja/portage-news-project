@@ -1,0 +1,42 @@
+{% extends "news/base.html" %}
+
+{% block content %}
+<section class="login-container">
+    <form method="post" class="login-form">
+        <h2>Subscriber Login</h2>
+        {% csrf_token %}
+        
+        <div class="form-fields">
+            {% for field in form %}
+            <div class="field-wrapper">
+                {{ field.label_tag }}
+                {{ field }}
+                {% comment %} Optionally display help text and errors {% endcomment %}
+                {% if field.help_text %}
+                    <small>{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            
+            {% comment %} Non-field errors (like "Username/Password mismatch") {% endcomment %}
+            {% if form.non_field_errors %}
+                <div class="error-message">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <button type="submit" class="read-more" style="width: 100%; margin-top: 15px;">Log In</button>
+        
+        <p class="signup-link" style="text-align: center; margin-top: 20px; font-size: 0.9em;">
+            Don't have an account? <a href="{% url 'signup' %}">Sign up here.</a>
+        </p>
+    </form>
+    
+    </section>
+{% endblock %}
