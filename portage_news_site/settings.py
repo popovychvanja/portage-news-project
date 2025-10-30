@@ -23,7 +23,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'default-local-insecure-key')
 DEBUG = 'RENDER' not in os.environ
 
 # Set ALLOWED_HOSTS for security
-ALLOWED_HOSTS = ['portage-news-web.onrender.com', 'localhost', '127.0.0.1'] 
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1'] 
 # You must replace 'portage-news-web.onrender.com' with your actual Render URL
 
 # Ensure secure settings are on in production
