@@ -63,7 +63,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'portage_news_project.urls' # **UPDATE THIS**
+ROOT_URLCONF = 'portage_news_site.urls' # **UPDATE THIS**
 
 TEMPLATES = [
     {
@@ -81,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'portage_news_project.wsgi.application' # **UPDATE THIS**
+WSGI_APPLICATION = 'portage_news_site.wsgi.application' # **UPDATE THIS**
 
 
 # =========================
