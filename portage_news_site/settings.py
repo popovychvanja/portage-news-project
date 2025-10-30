@@ -1,5 +1,5 @@
 """
-Django settings for portage_news_project project.
+Django settings for portage_news_site project.
 """
 
 from pathlib import Path

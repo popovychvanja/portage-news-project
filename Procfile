@@ -1,1 +1,1 @@
-web: gunicorn portage_news_project.wsgi:application
+web: gunicorn portage_news_site.wsgi:application
